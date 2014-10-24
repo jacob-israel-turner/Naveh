@@ -1,0 +1,77 @@
+body {
+	width: 100%;
+	box-sizing: box-border;
+	background-color:rgba(136, 255, 224, .3);
+	font-family: 'Open Sans', sans-serif;
+}
+.top-bar {
+	height: 40px;
+	width: 100%;
+	background-color: rgba(23, 23, 31, .6);
+	box-shadow: 0px 2px 3px #01000A;
+	display: flex;
+	justify-content: space-between;
+}
+.logo img {
+	height: 30px;
+	margin: 7px 7px;
+	width: auto;
+}
+.log-in {
+	color: #000;
+	display: flex;
+}
+.top-bar p {
+	margin: 0px;
+	color: #01000A;
+	align-self:center;
+	margin: 0px 15px;
+}
+.top-bar a {
+	color: #99EDBE;
+	text-decoration: none;
+}
+.spacer {
+	flex-grow: 2;
+}
+.cart {
+	align-self: center;
+	margin: 0px;
+}
+.input-group {
+	width: 300px;
+	align-self: center;
+	margin: 0px 15px;
+}
+.input-box input {
+    width: 90%%;
+    height: 20px;
+    font-size: 1rem;
+    border: 1px solid rgba(0, 0, 0, .4);
+    width: 400px;
+    padding: 2px 8px;
+    border-radius:15px;
+    box-shadow: inset 2px 2px 2px 0px #dddddd;
+    background-color: #fff;
+    margin: 7px 15px;
+}
+.container {
+	width: 90%;
+	box-sizing: box-border;
+	justify-content: space-around;
+	display: flex;
+	padding: 30px;
+}
+.floating-container {
+	width: 500px;
+	background-color: #fff;
+	border-radius: 15px;
+	box-shadow: 2px 2px 4px .5px #01000A;
+	padding: 20px;
+}
+.floating-container h1 {
+	text-align: center;
+}
+.floating-container p {
+	text-align: justify;
+}
