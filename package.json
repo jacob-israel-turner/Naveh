@@ -1,0 +1,35 @@
+{
+  "name": "naveh",
+  "version": "0.0.0",
+  "description": "Website for Naveh skin care products",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/kajdav/naveh"
+  },
+  "keywords": [
+    "Naveh",
+    "Skin",
+    "Care",
+    "Health",
+    "Natural",
+    "Feed",
+    "Organic"
+  ],
+  "author": "Jacob Turner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kajdav/naveh/issues"
+  },
+  "homepage": "https://github.com/kajdav/naveh",
+  "dependencies": {
+    "bluebird": "^2.3.6",
+    "body-parser": "^1.9.1",
+    "express": "^4.10.0",
+    "mongoose": "^3.8.18"
+  }
+}
