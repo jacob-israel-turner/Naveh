@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <link rel="stylesheet" href="normalize.css">
+        <link rel="stylesheet" href="style.css">
+        <title>Naveh - Feed Your Skin</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="shortcut icon" href="attachments/favicon.ico" type="image/x-icon">
+        <meta charset='UTF-8'>
+    </head>
+    
+    <body ng-app='navehApp'>
+        <div class="top-bar">
+            <div class="logo">
+                <img src="attachments/logo_resized.png">
+            </div>
+            <div class="log-in">
+                <p>	
+                	<a href="http://www.navehworld.com/account/login">Log in</a> or <a href="http://www.navehworld.com/account/register">Create an Account</a>
+				</p>
+			</div>
+			<div class="spacer">
+			</div>
+			<div class="cart">
+				<a href="http://www.navehworld.com/cart">
+					<p><i class="fa fa-shopping-cart"></i> Cart: 0</p>
+				</a>
+			</div>
+			<div class="input-box">
+    			<input type="text" placeholder="Search"/>
+			</div>
+		</div>
+		<div class='container' ng-view>
+		</div>
+
+        <script src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js'></script>
+        <script src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js'></script>
+
+
+        <script src='/app/main/app.js'></script>
+
+        <script src='/templates/home/home-ctrl.js'></script>
+        <script src='/templates/products/products-ctrl.js'></script>
+        <script src='/templates/product-page/product-page-ctrl.js'></script>
+        <script src='/templates/ingredients/ingredients-ctrl.js'></script>
+        <script src='/templates/ingredient-page/ingredient-ctrl.js'></script>
+	</body>
+</html>

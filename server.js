@@ -4,6 +4,7 @@
 
 var Express = require('express'),
 	Mongoose = require('mongoose'),
+	favicon = require('serve-favicon'),
 	bodyParser = require('body-parser');
 
 var port = 9012,
@@ -35,7 +36,9 @@ app.listen(port, function(){
 });
 
 //MIDDLEWARE
+app.use(favicon(__dirname + '/public/attachments/favicon.ico'));
 app.use(bodyParser.json());
+app.use(Express.static(__dirname + '/public'));
 
 
 //ENDPOINTS
@@ -69,4 +72,11 @@ app.delete('/ingredients/:id', ingredientController.delete);
 //orders
 app.post('/orders', orderController.post);
 
-//to do: finish orders, figure out how exactly the refs work and embed the reference in the order ('populate').
+app.get('/orders', orderController.get);
+
+app.put('/orders/:id', orderController.put);
+
+app.delete('/orders/:id', orderController.delete);
+
+//to do: finish angular routes, populate ingredients and products pages.
+
