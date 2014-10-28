@@ -11,28 +11,29 @@
         <link rel="shortcut icon" href="attachments/favicon.ico" type="image/x-icon">
         <meta charset='UTF-8'>
     </head>
-    
     <body ng-app='navehApp'>
         <div class="top-bar">
             <div class="logo">
                 <img src="attachments/logo_resized.png">
             </div>
             <div class="log-in">
-                <p>	
-                	<a href="http://www.navehworld.com/account/login">Log in</a> or <a href="http://www.navehworld.com/account/register">Create an Account</a>
-				</p>
-			</div>
-			<div class="spacer">
-			</div>
-			<div class="cart">
-				<a href="http://www.navehworld.com/cart">
-					<p><i class="fa fa-shopping-cart"></i> Cart: 0</p>
-				</a>
-			</div>
-			<div class="input-box">
-    			<input type="text" placeholder="Search"/>
-			</div>
-		</div>
+                <p> 
+                    <a href="http://www.navehworld.com/account/login">Log in</a> or <a href="http://www.navehworld.com/account/register">Create an Account</a>
+                </p>
+            </div>
+            <div class="spacer">
+            </div>
+            <div class="cart">
+                <a href="http://www.navehworld.com/cart">
+                    <p><i class="fa fa-shopping-cart"></i> Cart: 0</p>
+                </a>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Search"/>
+            </div>
+        </div>
+    <a href='/products'>products</a>
+    <a href='/products/test'>one product</a>
 		<div class='container' ng-view>
 		</div>
 
@@ -47,5 +48,7 @@
         <script src='/templates/product-page/product-page-ctrl.js'></script>
         <script src='/templates/ingredients/ingredients-ctrl.js'></script>
         <script src='/templates/ingredient-page/ingredient-ctrl.js'></script>
+
+        <script src='/app/services/product-service.js'></script>
 	</body>
 </html>

@@ -43,40 +43,47 @@ app.use(Express.static(__dirname + '/public'));
 
 //ENDPOINTS
 //customers
-app.get('/customers', customerController.get);
+app.get('/api/customers', customerController.get);
 
-app.post('/customers', customerController.post);
+app.post('/api/customers', customerController.post);
 
-app.put('/customers/:id', customerController.put);
+app.put('/api/customers/:id', customerController.put);
 
-app.delete('/customers/:id', customerController.delete);
+app.delete('/api/customers/:id', customerController.delete);
 
 //products
-app.get('/products', productController.get);
+app.get('/api/products', productController.get);
 
-app.post('/products', productController.post);
+app.post('/api/products', productController.post);
 
-app.put('/products/:id', productController.put);
+app.put('/api/products/:id', productController.put);
 
-app.delete('/products/:id', productController.delete);
+app.delete('/api/products/:id', productController.delete);
 
 //ingredients
-app.get('/ingredients', ingredientController.get);
+app.get('/api/ingredients', ingredientController.get);
 
-app.post('/ingredients', ingredientController.post);
+app.post('/api/ingredients', ingredientController.post);
 
-app.put('/ingredients/:id', ingredientController.put);
+app.put('/api/ingredients/:id', ingredientController.put);
 
-app.delete('/ingredients/:id', ingredientController.delete);
+app.delete('/api/ingredients/:id', ingredientController.delete);
 
 //orders
-app.post('/orders', orderController.post);
+app.post('/api/orders', orderController.post);
 
-app.get('/orders', orderController.get);
+app.get('/api/orders', orderController.get);
 
-app.put('/orders/:id', orderController.put);
+app.put('/api/orders/:id', orderController.put);
 
-app.delete('/orders/:id', orderController.delete);
+app.delete('/api/orders/:id', orderController.delete);
 
 //to do: finish angular routes, populate ingredients and products pages.
+app.all('/*/*', function(req, res, next){
+	console.log(__dirname);
+	res.sendFile('/public/index.html', { root: __dirname });
+})
 
+app.all('*', function(req, res, next) {
+    res.sendFile('/public/index.html', { root: __dirname });
+});
