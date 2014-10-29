@@ -1,2 +1,10 @@
-<h1>One love, one product.</h1>
-{{test}}
+<div class='flex-box'>
+	<div class='floating-container'>
+		<h1>{{product.name}}</h1>
+			<span>Ingredients: <span ng-repeat='ingredient in product.ingredients'><a ng-href='/ingredients/{{ingredient.name}}'>{{ingredient.name}}</a>, </span></span>
+			<p>{{product.info}}</p>
+			${{product.price}}
+			<br>
+			{{product.size}}
+	</div>
+</div>

@@ -1,0 +1,31 @@
+<div class='flex-box'>
+	<div class='floating-container'>
+		<h1>Edit {{ingredient.name}}</h1>
+		<form>
+			<input type='text' ng-model='ingredient.name' placeholder='Name' />
+			<br>
+			<input type='text' ng-model='ingredient.benefits' placeholder='Benefits' />
+			<br>
+			Seperate individual benefits by a comma
+			<br>
+			<textarea type='text' ng-model='ingredient.info' placeholder='Information'></textarea>
+			<br>
+			Used in the following products:
+			<br>
+			<label ng-repeat='(index, product) in products track by $index'>
+				<input type='checkbox' 
+				name='selectedProducts[]' 
+				value='{{product._id}}'
+				ng-checked='ingredient.products.indexOf(product._id) > -1'
+				ng-click='toggleSelection(product._id)' ></input>{{product.name}}<br>
+			</label>
+			Active:
+			<input type='radio' ng-model='ingredient.active' ng-value='true' checked>True</input>
+			<input type='radio' ng-model='ingredient.active' ng-value='false'>False</input>
+			<br>
+			<button ng-click='submitIngredient()'>Submit</button><button ng-click='clearIngredient()'>Clear</button>
+			<br>
+			<div ng-show='results' ng-style='resultsStyle'>{{results}}</div>
+		</form>
+	</div>
+</div>

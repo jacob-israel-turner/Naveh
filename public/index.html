@@ -2,19 +2,19 @@
 <html>
     
     <head>
-        <link rel="stylesheet" href="normalize.css">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="/normalize.css">
+        <link rel="stylesheet" href="/style.css">
         <title>Naveh - Feed Your Skin</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-        <link rel="shortcut icon" href="attachments/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/attachments/favicon.ico" type="image/x-icon">
         <meta charset='UTF-8'>
     </head>
     <body ng-app='navehApp'>
         <div class="top-bar">
             <div class="logo">
-                <img src="attachments/logo_resized.png">
+                <img src="/attachments/logo_resized.png">
             </div>
             <div class="log-in">
                 <p> 
@@ -32,23 +32,32 @@
                 <input type="text" placeholder="Search"/>
             </div>
         </div>
-    <a href='/products'>products</a>
-    <a href='/products/test'>one product</a>
+<!--     <a href='/products'>products</a>
+    <a href='/products/test'>one product</a> -->
 		<div class='container' ng-view>
 		</div>
-
+        
         <script src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js'></script>
         <script src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js'></script>
 
 
         <script src='/app/main/app.js'></script>
 
+
         <script src='/templates/home/home-ctrl.js'></script>
+
         <script src='/templates/products/products-ctrl.js'></script>
         <script src='/templates/product-page/product-page-ctrl.js'></script>
+        <script src='/templates/add-product/add-product-controller.js'></script>
+        <script src='/templates/edit-product/edit-product-controller.js'></script>
+
         <script src='/templates/ingredients/ingredients-ctrl.js'></script>
         <script src='/templates/ingredient-page/ingredient-ctrl.js'></script>
+        <script src='/templates/add-ingredient/add-ingredient-control.js'></script>
+        <script src='/templates/edit-ingredient/edit-ingredient-control.js'></script>
+
 
         <script src='/app/services/product-service.js'></script>
+        <script src='/app/services/ingredient-service.js'></script>
 	</body>
 </html>
