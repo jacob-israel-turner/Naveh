@@ -1,0 +1,10 @@
+<div class='flex-box'>
+	<div class='floating-container'>
+		<h1>Welcome to your dashboard, {{user.name}}</h1>
+		<img class='dashboard-pic' ng-src='{{user.googlePic}}'></img>
+		<br>
+		Emails: <span  ng-repeat='email in user.email'>{{email}}, </span>
+		<br>
+		Cart: 
+	</div>
+</div>

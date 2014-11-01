@@ -5,6 +5,17 @@
 			<p>{{product.info}}</p>
 			${{product.price}}
 			<br>
-			{{product.size}}
+			{{product.size}} ML
+			<br>
+			<form novalidate name='addForm'>
+				<input type='number' 
+				ng-model='addAmount'
+				ng-minlength='1'
+				ng-maxlength='99'
+				ng-require='true'></input>
+				<button ng-click='addToCart()'>Add to Cart</button>
+				<br>
+				<span ng-show='error'>{{error}}</span>
+			</form>
 	</div>
 </div>

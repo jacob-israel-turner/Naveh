@@ -90,3 +90,10 @@ body {
 	border: 1px solid #ccc;
 	margin-bottom: 10px;
 }
+
+
+/* DASHBOARD */
+.dashboard-pic {
+	height: auto;
+	width: 80px;
+}

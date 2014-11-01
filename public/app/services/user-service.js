@@ -1,10 +1,16 @@
 var app = angular.module('navehApp');
 
 app.service('userService', function($http){
-	this.googleAuthenticate = function(){
+	this.getUser = function(){
 		return $http({
 			method: 'GET',
-			url: '/auth/google'
+			url: '/api/user/me'
+		})
+	}
+	this.logout = function(){
+		return $http({
+			method: 'POST',
+			url: '/api/logout'
 		})
 	}
 });

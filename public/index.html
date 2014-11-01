@@ -11,14 +11,22 @@
         <link rel="shortcut icon" href="/attachments/favicon.ico" type="image/x-icon">
         <meta charset='UTF-8'>
     </head>
-    <body ng-app='navehApp'>
+    <body ng-app='navehApp' ng-controller='mainCtrl'>
         <div class="top-bar">
             <div class="logo">
                 <img src="/attachments/logo_resized.png">
             </div>
-            <div class="log-in">
+            <div class="log-in" ng-show='!user'>
                 <p> 
-                    <a href="http://www.navehworld.com/account/login">Log in</a> or <a href="http://www.navehworld.com/account/register">Create an Account</a>
+                    <a href="/register">Log in or Register</a>
+                </p>
+            </div>
+            <div class='logged-in' ng-show='user'>
+                <p>
+                    Welcome, {{user.name}}
+                </p>
+                <p>
+                    <a href='' ng-click='logout()'>Logout</a>
                 </p>
             </div>
             <div class="spacer">
@@ -43,6 +51,7 @@
 
         <script src='/app/main/app.js'></script>
 
+        <script src='/app/main/main-control.js'></script>
 
         <script src='/templates/home/home-ctrl.js'></script>
 
@@ -57,10 +66,12 @@
         <script src='/templates/ingredients/ingredient-page/ingredient-ctrl.js'></script>
         <script src='/templates/ingredients/add-ingredient/add-ingredient-control.js'></script>
         <script src='/templates/ingredients/edit-ingredient/edit-ingredient-control.js'></script>
+        <script src='/templates/users/user-page/user-page-control.js'></script>
 
 
         <script src='/app/services/product-service.js'></script>
         <script src='/app/services/ingredient-service.js'></script>
         <script src='/app/services/user-service.js'></script>
+        <script src='/app/services/shopping-service.js'></script>
 	</body>
 </html>

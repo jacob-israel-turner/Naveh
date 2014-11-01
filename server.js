@@ -7,6 +7,8 @@ var Express = require('express'),
 	favicon = require('serve-favicon'),
 	passport = require('passport'),
 	cors = require('cors'),
+	cookieParser = require('cookie-parser'),
+	expressSession = require('express-session'),
 	User = require('./lib/models/customer'),
 	GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
 	bodyParser = require('body-parser');
@@ -18,19 +20,20 @@ var port = 9012,
 
 //serialize user for session
 passport.serializeUser(function(user, done) {
-	done(null, user);
+	done(null, user.id);
 });
-passport.deserializeUser(function(obj, done) {
-	User.findById(obj.id, function(err, user){
-		done(err, user);
-	})
-});
+passport.deserializeUser(function(id, done) {
+	User.findById(id, function(err, user){ //I 'think' this checks
+		done(err, user); //the cookie in the req object, then 
+	}) //parses (deserializes) it to tell if they're authenticated
+}); //or not.  Then it sticks the user info in req.user. cool!
 
 //controllers:
 var customerController = require('./lib/controllers/customerController'),
 	productController = require('./lib/controllers/productController'),
 	ingredientController = require('./lib/controllers/ingredient-controller'),
-	orderController = require('./lib/controllers/order-controller');
+	orderController = require('./lib/controllers/order-controller'),
+	cartController = require('./lib/controllers/cart-controller');
 
 //services:
 var authService = require('./lib/services/auth-service.js');
@@ -54,7 +57,7 @@ passport.use(new GoogleStrategy({ //This sets up/defines the Google authenticati
 	clientID: '170338434875-eqh886fsse5anq14nj6ck2rnqjncsig3.apps.googleusercontent.com',
 	clientSecret: 'hWFISrL1NZeya4Mc-fQg8WSl',
 	callbackURL: 'http://localhost:9012/auth/google/callback'
-}, function(accessToken, refreshToken, profile, done){
+}, function(accessToken, refreshToken, params, profile, done){
 	authService.googleAuth(profile).then(function(user){
 		return done(null, user);
 	}).fail(function(err){
@@ -62,16 +65,16 @@ passport.use(new GoogleStrategy({ //This sets up/defines the Google authenticati
 	})
 }));
 
-var authenticateUser = function(req, res, next) {
-  passport.authenticate('google', function(err, user, info) {
-    if (!user) {
-      return res.status(401).end();
-    }
-    req.logIn(user, function(err) {
-      return res.status(200).end();
-    });
-  })(req, res, next);
-}
+// var authenticateUser = function(req, res, next) {
+//   passport.authenticate('google', function(err, user, info) {
+//     if (!user) {
+//       return res.status(401).end();
+//     }
+//     req.logIn(user, function(err) {
+//       return res.status(200).end();
+//     });
+//   })(req, res, next);
+// }
 
 var requireAuth = function(req, res, next) {
   if (!req.isAuthenticated()) {
@@ -82,14 +85,17 @@ var requireAuth = function(req, res, next) {
 
 
 //MIDDLEWARE
-app.use(favicon(__dirname + '/public/attachments/favicon.ico'));
-app.use(bodyParser.json());
 // app.use(allowCrossDomain);
-app.use(cors());
-app.use(Express.static(__dirname + '/public'));
+// app.use(cors());
 
+app.use(Express.static(__dirname + '/public'));
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(expressSession({ secret: 'bridge of wood' }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(favicon(__dirname + '/public/attachments/favicon.ico'));
+
 
 
 //ENDPOINTS
@@ -100,13 +106,9 @@ app.get('/auth/google',
 	passport.authenticate('google', {scope: 'openid profile email https://www.googleapis.com/auth/plus.login'}));
 
 app.get('/auth/google/callback',
-	passport.authenticate('google', {failureRedirect: '/#/register', successRedirect: '/#/products'}),
-	function(req, res){
-		console.log(req);
-		// res.redirect('/');
-	});
+	passport.authenticate('google', { failureRedirect: '/register/error', successRedirect: '/'}));
 
-app.post('/api/auth', authenticateUser); //use this to log a 
+//app.post('/api/auth', authenticateUser); //use this to log a 
 									//user in. pretty much does
 									//what /auth/google does...
 
@@ -115,14 +117,16 @@ app.post('/api/logout', function(req, res){ //logs a user out
 	return res.status(200).end();
 });
 
-app.get('/api/user/me', requireAuth, function(req, res) {
-  return res.json(req.user); 
+app.get('/api/user/me', function(req, res) {
+  	return res.json(req.user); 
 });											//gets a user's data
 
 //customers
 app.get('/api/customers', customerController.get);
 
-app.post('/api/customers', customerController.post); //register
+app.post('/api/customers', customerController.post);
+
+app.get('/api/customers/:id', customerController.getOne);
 
 app.put('/api/customers/:id', customerController.put);
 
@@ -158,6 +162,11 @@ app.get('/api/orders', orderController.get);
 app.put('/api/orders/:id', orderController.put);
 
 app.delete('/api/orders/:id', orderController.delete);
+
+//cart
+app.get('/api/customers/:id/cart', cartController.get);
+
+app.put('/api/customers/:id/cart', cartController.put);
 
 //miscellaneous
 //This serves the index file, which makes angular's HTML5 mode work properly
