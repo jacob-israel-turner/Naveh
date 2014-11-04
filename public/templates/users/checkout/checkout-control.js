@@ -11,9 +11,6 @@ app.controller('checkoutCtrl', function($scope, $rootScope, userService, shoppin
 			$scope.totalPrice += $scope.user.cart[i].price;
 		}
 	};
-	$scope.submitOrder = function(){
-
-	};
 	$scope.clearAddy = function(){
 		console.log($scope.newAddy);
 		$scope.newAddy = {};
@@ -34,9 +31,8 @@ app.controller('checkoutCtrl', function($scope, $rootScope, userService, shoppin
 	$scope.submitOrder = function(){
 		shoppingService.submitOrder($scope.user._id, $scope.user.cart, $scope.selectedAddress)
 			.then(function(data){
-				console.log(data);
 				$scope.results = data.data;
-				console.log($scope.results);
+				$rootScope.$broadcast('update-user');
 			})
 	}
 });

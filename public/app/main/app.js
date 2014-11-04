@@ -73,6 +73,11 @@ app.config(function($routeProvider, $locationProvider){
 			templateUrl: '/templates/users/checkout/checkout-page.html',
 			controller: 'checkoutCtrl'
 		})
+
+		.when('/orders', {
+			templateUrl: '/templates/users/orders/orders-page.html',
+			controller: 'ordersCtrl'
+		})
 		
 		.otherwise({
 			redirectTo: '/'
@@ -80,8 +85,7 @@ app.config(function($routeProvider, $locationProvider){
 	$locationProvider.html5Mode(true);
 });
 
-//toDo: clear cart after creating order
-//THEN create page to view orders
+//toDo: create page to view orders
 //THEN do some minor front-ending.
 //THEN integrate stripe to buy things.
 //THEN integrate mandrill to email customers (registration and
@@ -96,3 +100,7 @@ app.config(function($routeProvider, $locationProvider){
 //---Account page
 //-----Show their entire account info
 //-----Add emails, addresses, connect Facebook/google, etc.
+//---Add current orders to customer schema
+//---Refresh user data (OR USE SOCKET.IO!) on:
+//-----Adding item to cart
+//-----Submitting order

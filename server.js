@@ -170,6 +170,8 @@ app.get('/api/customers/:id/cart', cartController.get);
 
 app.put('/api/customers/:id/cart', cartController.put);
 
+app.delete('/api/customers/:id/cart', cartController.delete);
+
 //miscellaneous
 //This serves the index file, which makes angular's HTML5 mode work properly
 app.all('*', function(req, res, next) {
@@ -183,3 +185,8 @@ app.all('*', function(req, res, next) {
 //  implement this later on.
 //--figure out error handling, update everything to include it.
 //  https://github.com/kriskowal/q  <-- 'Handling Errors' section is good.
+
+
+//to check lines of code:
+//    find: ^.*\S+.*$
+//    where: C:\Users\Jacob Turner\DevMountain\naveh, *.php,*.phtml,*.js,*.inc,*.html, -*/node_modules/*

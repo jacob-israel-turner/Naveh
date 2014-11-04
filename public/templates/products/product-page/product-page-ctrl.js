@@ -1,6 +1,6 @@
 var app = angular.module('navehApp');
 
-app.controller('productCtrl', function($scope, productService, shoppingService){
+app.controller('productCtrl', function($scope, $rootScope, productService, shoppingService){
 	productService.getOne().then(function(data){
 		$scope.product = data.data;
 	})
@@ -16,8 +16,8 @@ app.controller('productCtrl', function($scope, productService, shoppingService){
 				amount: $scope.addAmount
 			}
 			shoppingService.addToCart(product, $scope.user._id).then(function(data){
-				console.log(data);
 				$scope.message = $scope.product.name + ' was added to your cart.'
+				$rootScope.$broadcast('update-user');
 			})
 		}
 	}
