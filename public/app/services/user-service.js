@@ -13,4 +13,11 @@ app.service('userService', function($http){
 			url: '/api/logout'
 		})
 	}
+	this.addAddy = function(addy, userId){
+		return $http({
+			method: 'PUT',
+			url: '/api/customers/' + userId + '/address',
+			data: addy
+		})
+	}
 });

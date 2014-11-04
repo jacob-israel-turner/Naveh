@@ -1,0 +1,55 @@
+<div class='flex-box'>
+	<div class='floating-container'>
+		<h1>Checkout</h1>
+		Order summary:
+		<br>
+		Products:
+		<br>
+		<div ng-repeat='item in user.cart'>
+		{{item.item.name}} <br>
+		Quantity: {{item.amount}}<br>
+		${{item.price / 100}}<br>
+		<br>
+		</div>
+
+		Total price: ${{totalPrice / 100}}
+		<br>
+		Select an address to ship to:
+		<br>
+		<div class='single-item' ng-repeat='item in user.address'>
+		<input 
+		type='radio' 
+		name='address' 
+		ng-model='$parent.selectedAddress' 
+		ng-value='{{item}}'
+		ng-change='change()'>
+		{{item.name}}<br ng-show='item.name'>
+		{{item.address}}<br ng-show='item.address'>
+		{{item.address2}}<br ng-show='item.address2'>
+		{{item.city}}<br ng-show='item.city'>
+		{{item.state}}<br ng-show='item.state'>
+		{{item.zip}}
+		</div>
+		<div ng-show='showNewAddress' class='single-item'>
+			<form>
+				<input type='text' ng-model='newAddy.name' placeholder='Name' />
+				<br>
+				<input type='text' ng-model='newAddy.address' placeholder='Line 1' />
+				<br>
+				<input type='text' ng-model='newAddy.address2' placeholder='Line 2' />
+				<br>
+				<input type='text' ng-model='newAddy.city' placeholder='City'></input>
+				<br>
+				<input type='text' ng-model='newAddy.state' placeholder='State'></input>
+				<br>
+				<input type='text' ng-model='newAddy.zip' placeholder='Zip'></input>
+				<br>
+				<button ng-click='submitAddy()'>Submit</button><button ng-click='clearAddy()'>Clear</button>
+				<br>
+			</form>
+		</div>
+		<div ng-show='results' ng-style='resultsStyle'>{{results}}</div>
+		<button ng-click='showNewAddress = true'>Use a different address</button>
+		<button ng-click='submitOrder()'>Submit Order</button>
+	</div>
+</div> 

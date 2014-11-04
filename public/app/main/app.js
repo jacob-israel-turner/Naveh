@@ -66,9 +66,13 @@ app.config(function($routeProvider, $locationProvider){
 			controller: 'userCtrl'
 		})
 		.when('/cart', {
-			templateUrl: '/templates/cart/'
+			templateUrl: '/templates/users/cart/cart-page.html',
+			controller: 'cartCtrl'
 		})
-
+		.when('/checkout', {
+			templateUrl: '/templates/users/checkout/checkout-page.html',
+			controller: 'checkoutCtrl'
+		})
 		
 		.otherwise({
 			redirectTo: '/'
@@ -76,8 +80,8 @@ app.config(function($routeProvider, $locationProvider){
 	$locationProvider.html5Mode(true);
 });
 
-//toDo: create page to create orders
-//THEN create page to update orders
+//toDo: clear cart after creating order
+//THEN create page to view orders
 //THEN do some minor front-ending.
 //THEN integrate stripe to buy things.
 //THEN integrate mandrill to email customers (registration and

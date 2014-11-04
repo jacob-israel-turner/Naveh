@@ -23,7 +23,7 @@ passport.serializeUser(function(user, done) {
 	done(null, user.id);
 });
 passport.deserializeUser(function(id, done) {
-	User.findById(id, function(err, user){ //I 'think' this checks
+	User.findById(id).populate('cart.item').exec(function(err, user){ //I 'think' this checks
 		done(err, user); //the cookie in the req object, then 
 	}) //parses (deserializes) it to tell if they're authenticated
 }); //or not.  Then it sticks the user info in req.user. cool!
@@ -119,7 +119,7 @@ app.post('/api/logout', function(req, res){ //logs a user out
 
 app.get('/api/user/me', function(req, res) {
   	return res.json(req.user); 
-});											//gets a user's data
+});										//gets a user's data
 
 //customers
 app.get('/api/customers', customerController.get);
@@ -131,6 +131,8 @@ app.get('/api/customers/:id', customerController.getOne);
 app.put('/api/customers/:id', customerController.put);
 
 app.delete('/api/customers/:id', customerController.delete);
+//address
+app.put('/api/customers/:id/address', customerController.addAddress);
 
 //products
 app.get('/api/products', productController.get);

@@ -1,0 +1,9 @@
+<div class='flex-box'>
+	<div class='floating-container'>
+		<h1>This is the cart!</h1>
+		<span ng-repeat='item in user.cart'>
+		{{item.item.name}} - Quantity: {{item.amount}}, Price: {{item.price}}<br>
+		</span>
+		<button ng-click="go('/checkout')">Proceed to Checkout</button>
+	</div>
+</div>
