@@ -1,6 +1,6 @@
 var app = angular.module('navehApp');
 
-app.service('shoppingService', function($http){
+app.service('shoppingService', function($http, $routeParams){
 	this.addToCart = function(product, userId){
 		return $http({
 			method: 'PUT',
@@ -20,6 +20,14 @@ app.service('shoppingService', function($http){
 			method: 'POST',
 			url: '/api/orders',
 			data: order
+		})
+	}
+	this.submitStripe = function(token){
+		console.log(token, $routeParams.id)
+		return $http({
+			method: 'POST',
+			url: '/api/orders/' + $routeParams.id + '/payment',
+			data: token
 		})
 	}
 })

@@ -11,6 +11,7 @@ var Express = require('express'),
 	expressSession = require('express-session'),
 	User = require('./lib/models/customer'),
 	GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
+	stripe = require('stripe')('')
 	bodyParser = require('body-parser');
 
 var port = 9012,
@@ -164,6 +165,8 @@ app.get('/api/orders', orderController.get);
 app.put('/api/orders/:id', orderController.put);
 
 app.delete('/api/orders/:id', orderController.delete);
+//payment
+app.post('/api/orders/:id/payment', orderController.submitStripe);
 
 //cart
 app.get('/api/customers/:id/cart', cartController.get);

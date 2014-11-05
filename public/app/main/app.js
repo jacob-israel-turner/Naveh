@@ -91,6 +91,8 @@ app.config(function($routeProvider, $locationProvider){
 
 //toDo: integrate stripe to buy things.
 //----Add 'total cost' key to order object
+//----The token and order id are now getting to the backend. Read here:
+//----https://stripe.com/docs/tutorials/charges <-- to take things from there.
 //THEN do some minor front-ending.
 //THEN integrate mandrill to email customers (registration and
 //     purchase) and the company (registration? and purchase).
