@@ -73,8 +73,12 @@ app.config(function($routeProvider, $locationProvider){
 			templateUrl: '/templates/users/checkout/checkout-page.html',
 			controller: 'checkoutCtrl'
 		})
+		.when('/checkout/payment/:id', {
+			templateUrl: '/templates/users/checkout/payment/payment-page.html',
+			controller: 'paymentCtrl'
+		})
 
-		.when('/orders', {
+		.when('/orders/:id', {
 			templateUrl: '/templates/users/orders/orders-page.html',
 			controller: 'ordersCtrl'
 		})
@@ -85,9 +89,9 @@ app.config(function($routeProvider, $locationProvider){
 	$locationProvider.html5Mode(true);
 });
 
-//toDo: create page to view orders
+//toDo: integrate stripe to buy things.
+//----Add 'total cost' key to order object
 //THEN do some minor front-ending.
-//THEN integrate stripe to buy things.
 //THEN integrate mandrill to email customers (registration and
 //     purchase) and the company (registration? and purchase).
 //THEN tie all of the front end together.

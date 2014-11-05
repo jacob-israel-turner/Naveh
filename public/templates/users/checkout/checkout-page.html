@@ -50,6 +50,6 @@
 		</div>
 		<div ng-show='results' ng-style='resultsStyle'>{{results}}</div>
 		<button ng-click='showNewAddress = true'>Use a different address</button>
-		<button ng-click='submitOrder()'>Submit Order</button>
+		<button ng-click='submitOrder()' ng-disabled="disableButton">Proceed to Payment</button> <!-- This needs to be styled for when it's disabled. -->
 	</div>
 </div> 

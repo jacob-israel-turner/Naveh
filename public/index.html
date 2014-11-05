@@ -42,11 +42,13 @@
         </div>
 <!--     <a href='/products'>products</a>
     <a href='/products/test'>one product</a> -->
+
 		<div class='container' ng-view>
 		</div>
         
         <script src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js'></script>
         <script src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js'></script>
+        <script src="https://checkout.stripe.com/checkout.js"></script>
 
 
         <script src='/app/main/app.js'></script>
@@ -71,6 +73,7 @@
         <script src='/templates/users/user-page/user-page-control.js'></script>
         <script src='/templates/users/cart/cart-control.js'></script>
         <script src='/templates/users/checkout/checkout-control.js'></script>
+        <script src='/templates/users/checkout/payment/payment-control.js'></script>
 
         <script src='/templates/users/orders/orders-control.js'></script>
 
@@ -78,5 +81,6 @@
         <script src='/app/services/ingredient-service.js'></script>
         <script src='/app/services/user-service.js'></script>
         <script src='/app/services/shopping-service.js'></script>
+        <script src='/app/services/order-service.js'></script>
 	</body>
 </html>

@@ -1,9 +1,7 @@
 var app = angular.module('navehApp');
 
-app.controller('checkoutCtrl', function($scope, $rootScope, userService, shoppingService){
-	// $scope.$on('user-loaded', function(){
-	// 	console.log("I'm loaded");
-	// })
+app.controller('checkoutCtrl', function($scope, $rootScope, $location, userService, shoppingService){
+	$scope.disableButton = false;
 	$scope.showNewAddress = false;
 	$scope.totalPrice = 0;
 	for (var i = $scope.user.cart.length - 1; i >= 0; i--) {
@@ -29,10 +27,13 @@ app.controller('checkoutCtrl', function($scope, $rootScope, userService, shoppin
 		});
 	}
 	$scope.submitOrder = function(){
+		$scope.disableButton = true;
 		shoppingService.submitOrder($scope.user._id, $scope.user.cart, $scope.selectedAddress)
 			.then(function(data){
-				$scope.results = data.data;
+				$scope.order = data.data[0];
+				console.log($scope.order);
 				$rootScope.$broadcast('update-user');
+				$location.path('/checkout/payment/' + $scope.order._id);
 			})
 	}
 });

@@ -9,6 +9,7 @@ app.service('shoppingService', function($http){
 		})
 	}
 	this.submitOrder = function(userId, cart, shippingAddy){
+		console.log(cart);
 		var order = {
 			customer: userId,
 			cart: cart,
