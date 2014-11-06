@@ -1,6 +1,6 @@
 var app = angular.module('navehApp');
 
-app.controller('checkoutCtrl', function($scope, $rootScope, $location, userService, shoppingService){
+app.controller('selectAddressCtrl', function($scope, $rootScope, shoppingService, $location, userService){
 	$scope.disableButton = false;
 	$scope.showNewAddress = false;
 	$scope.totalPrice = 0;
@@ -47,4 +47,4 @@ app.controller('checkoutCtrl', function($scope, $rootScope, $location, userServi
 				$location.path('/checkout/payment/' + $scope.order._id);
 			})
 	}
-});
+})

@@ -18,7 +18,7 @@ app.config(function($routeProvider, $locationProvider){
 		.when('/auth/google',{
 			templateUrl: '/templates/register/google-auth.html',
 			resolve: {
-				reRoute: function(){
+				reroute: function(){
 					location.reload();
 				}
 			}
@@ -70,17 +70,26 @@ app.config(function($routeProvider, $locationProvider){
 			controller: 'cartCtrl'
 		})
 		.when('/checkout', {
-			templateUrl: '/templates/users/checkout/checkout-page.html',
-			controller: 'checkoutCtrl'
+			// templateUrl: '/templates/users/checkout/checkout-page.html',
+			// controller: 'checkoutCtrl'
+			redirectTo: '/checkout/select-address'
 		})
 		.when('/checkout/payment/:id', {
 			templateUrl: '/templates/users/checkout/payment/payment-page.html',
 			controller: 'paymentCtrl'
 		})
+		.when('/checkout/select-address', {
+			templateUrl: '/templates/users/checkout/select-address/select-address.html',
+			controller: 'selectAddressCtrl'
+		})
 
-		.when('/orders/:id', {
+		.when('/orders', {
 			templateUrl: '/templates/users/orders/orders-page.html',
 			controller: 'ordersCtrl'
+		})
+		.when('/orders/:id', {
+			templateUrl: '/templates/users/orders/order-page/order-page.html',
+			controller: 'orderCtrl'
 		})
 		
 		.otherwise({
@@ -108,3 +117,4 @@ app.config(function($routeProvider, $locationProvider){
 //---Refresh user data (OR USE SOCKET.IO!) on:
 //-----Adding item to cart
 //-----Submitting order
+//--secure routes - client and server-side

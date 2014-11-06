@@ -1,7 +1,6 @@
 //NOTES: Using this for validation: https://github.com/leepowellcouk/mongoose-validator
 //Different than mongoose-validate
 
-
 var Express = require('express'),
 	Mongoose = require('mongoose'),
 	favicon = require('serve-favicon'),
@@ -19,40 +18,6 @@ var port = 9012,
 	connection = Mongoose.connection,
 	app = Express();
 
-//serialize user for session
-passport.serializeUser(function(user, done) {
-	done(null, user.id);
-});
-passport.deserializeUser(function(id, done) {
-	User.findById(id).populate('cart.item').exec(function(err, user){ //I 'think' this checks
-		done(err, user); //the cookie in the req object, then 
-	}) //parses (deserializes) it to tell if they're authenticated
-}); //or not.  Then it sticks the user info in req.user. cool!
-
-//controllers:
-var customerController = require('./lib/controllers/customerController'),
-	productController = require('./lib/controllers/productController'),
-	ingredientController = require('./lib/controllers/ingredient-controller'),
-	orderController = require('./lib/controllers/order-controller'),
-	paymentController = require('./lib/controllers/payment-controller'),
-	cartController = require('./lib/controllers/cart-controller');
-
-//services:
-var authService = require('./lib/services/auth-service.js');
-
-//connecting to mongodb
-Mongoose.connect(mongoUri);
-
-connection.once('open', function(){
-	console.log('Connected to the Database at: ' + mongoUri)
-})
-
-
-//connecting to client
-app.listen(port, function(){
-	console.log('Now listening on port: ' + port);
-});
-
 //AUTHENTICATION
 //google oAuth2
 passport.use(new GoogleStrategy({ //This sets up/defines the Google authentication strategy.
@@ -66,18 +31,18 @@ passport.use(new GoogleStrategy({ //This sets up/defines the Google authenticati
 		return done(err);
 	})
 }));
+//serialize user for session
+passport.serializeUser(function(user, done) {
+	if(Array.isArray(user)) user = user[0];
+	done(null, user._id);
+});
+passport.deserializeUser(function(id, done) {
+	User.findById(id).populate('cart.item').populate('orders.ref').exec(function(err, user){ //I 'think' this checks
+		done(err, user); //the cookie in the req object, then 
+	}) //parses (deserializes) it to tell if they're authenticated
+}); //or not.  Then it sticks the user info in req.user. cool!
 
-// var authenticateUser = function(req, res, next) {
-//   passport.authenticate('google', function(err, user, info) {
-//     if (!user) {
-//       return res.status(401).end();
-//     }
-//     req.logIn(user, function(err) {
-//       return res.status(200).end();
-//     });
-//   })(req, res, next);
-// }
-
+//Require auth for the endpoint
 var requireAuth = function(req, res, next) {
   if (!req.isAuthenticated()) {
     return res.status(401).end();
@@ -85,11 +50,35 @@ var requireAuth = function(req, res, next) {
   next();
 };
 
+//IMPORTS
+//controllers:
+var customerController = require('./lib/controllers/customerController'),
+	productController = require('./lib/controllers/productController'),
+	ingredientController = require('./lib/controllers/ingredient-controller'),
+	orderController = require('./lib/controllers/order-controller'),
+	paymentController = require('./lib/controllers/payment-controller'),
+	cartController = require('./lib/controllers/cart-controller');
+
+//services:
+var authService = require('./lib/services/auth-service.js');
+
+
+//CONNECTING
+//connecting to mongodb
+Mongoose.connect(mongoUri);
+
+connection.once('open', function(){
+	console.log('Connected to the Database at: ' + mongoUri)
+})
+//connecting to client
+app.listen(port, function(){
+	console.log('Now listening on port: ' + port);
+});
+
+
+
 
 //MIDDLEWARE
-// app.use(allowCrossDomain);
-// app.use(cors());
-
 app.use(Express.static(__dirname + '/public'));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -109,10 +98,6 @@ app.get('/auth/google',
 
 app.get('/auth/google/callback',
 	passport.authenticate('google', { failureRedirect: '/register/error', successRedirect: '/'}));
-
-//app.post('/api/auth', authenticateUser); //use this to log a 
-									//user in. pretty much does
-									//what /auth/google does...
 
 app.post('/api/logout', function(req, res){ //logs a user out
 	req.logout();

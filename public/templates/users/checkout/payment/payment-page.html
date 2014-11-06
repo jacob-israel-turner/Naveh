@@ -1,8 +1,26 @@
 <div class='flex-box'>
 <div class='floating-container'>
-
 	<h1>Payment</h1>
-	Total Cost: {{order.totalCost}}<br>
+	Order summary:
+	<br>
+	Products:
+	<br>
+	<div ng-repeat='item in order.products'>
+		{{item.ref.name}} <br>
+		Quantity: {{item.quantity}}<br>
+		${{item.price}}<br>
+		<br>
+	</div>
+	Shipping address:<br>
+	{{order.shippingAddy.name}}<br ng-show='order.shippingAddy.name'>
+	{{order.shippingAddy.address}}<br ng-show='order.shippingAddy.address'>
+	{{order.shippingAddy.address2}}<br ng-show='order.shippingAddy.address2'>
+	{{order.shippingAddy.city}}<br ng-show='order.shippingAddy.city'>
+	{{order.shippingAddy.state}}<br ng-show='order.shippingAddy.state'>
+	{{order.shippingAddy.zip}}<br ng-show='order.shippingAddy.zip'>
+	<br>
+	Total price: ${{order.totalCost}}
+	<br>
 	<button ng-click='pay()'>Pay with Stripe</button>
 </div>
 </div>

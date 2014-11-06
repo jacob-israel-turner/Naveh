@@ -1,6 +1,6 @@
 var app = angular.module('navehApp');
 
-app.controller('paymentCtrl', function($scope, $routeParams, shoppingService, orderService){
+app.controller('paymentCtrl', function($scope, $routeParams, $location, shoppingService, orderService){
 	orderService.getOrder($routeParams.id).then(function(data){
 		$scope.order = data.data;
 		console.log(data);
@@ -13,6 +13,8 @@ app.controller('paymentCtrl', function($scope, $routeParams, shoppingService, or
 	      // You can access the token ID with `token.id`
 	      shoppingService.submitStripe(token).then(function(data){
 	      	console.log(data);
+	      	alert('Your payment has been received!\nYou will now be redirected to your receipt page.');
+	      	$location.path('/orders/' + $scope.order._id)
 	      })
 	    }
 	});
