@@ -1,6 +1,7 @@
 <div class='flex-box'>
 	<div class='floating-container'>
 		<h1>{{ingredient.name}}</h1>
+			<a href='/ingredients'>Back to Ingredients</a><br>
 			<span>Used in the following products: <span ng-repeat='product in ingredient.products'><a ng-href='/products/{{product.name}}'>{{product.name}}</a>, </span></span>
 			<p>{{ingredient.info}}</p>
 			<span>Benefits:<span ng-repeat='benefit in ingredient.benefits'><br>{{benefit}}</span></span>

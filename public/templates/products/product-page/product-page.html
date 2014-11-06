@@ -1,21 +1,22 @@
 <div class='flex-box'>
 	<div class='floating-container'>
 		<h1>{{product.name}}</h1>
+			<a href='/products'>Back to Products</a><br>
 			<span>Ingredients: <span ng-repeat='ingredient in product.ingredients'><a ng-href='/ingredients/{{ingredient.name}}'>{{ingredient.name}}</a>, </span></span>
 			<p>{{product.info}}</p>
 			${{product.price}}
 			<br>
 			{{product.size}} ML
 			<br>
-			<form novalidate name='addForm'>
+			<form novalidate name='addForm' ng-show='disableForm'>
 				<input type='number' 
 				ng-model='addAmount'
 				ng-minlength='1'
 				ng-maxlength='99'
 				ng-require='true'></input>
-				<button ng-click='addToCart()'>Add to Cart</button>
+				<button ng-click='addToCart()' ng-disabled="disableButton">Add to Cart</button>
 				<br>
-				<span ng-show='message'>{{message}}</span>
 			</form>
+			<span ng-show='message'>{{message}}</span>
 	</div>
 </div>

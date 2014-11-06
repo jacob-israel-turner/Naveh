@@ -34,6 +34,7 @@ var customerController = require('./lib/controllers/customerController'),
 	productController = require('./lib/controllers/productController'),
 	ingredientController = require('./lib/controllers/ingredient-controller'),
 	orderController = require('./lib/controllers/order-controller'),
+	paymentController = require('./lib/controllers/payment-controller'),
 	cartController = require('./lib/controllers/cart-controller');
 
 //services:
@@ -135,6 +136,8 @@ app.delete('/api/customers/:id', customerController.delete);
 //address
 app.put('/api/customers/:id/address', customerController.addAddress);
 
+app.delete('/api/customers/:id/address/:addyId', customerController.deleteAddress);
+
 //products
 app.get('/api/products', productController.get);
 
@@ -162,11 +165,13 @@ app.post('/api/orders', orderController.post);
 
 app.get('/api/orders', orderController.get);
 
+app.get('/api/orders/:id', orderController.getOne)
+
 app.put('/api/orders/:id', orderController.put);
 
 app.delete('/api/orders/:id', orderController.delete);
 //payment
-app.post('/api/orders/:id/payment', orderController.submitStripe);
+app.post('/api/orders/:id/payment', paymentController.submitStripe);
 
 //cart
 app.get('/api/customers/:id/cart', cartController.get);

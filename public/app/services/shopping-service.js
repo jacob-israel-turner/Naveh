@@ -8,12 +8,13 @@ app.service('shoppingService', function($http, $routeParams){
 			data: product
 		})
 	}
-	this.submitOrder = function(userId, cart, shippingAddy){
+	this.submitOrder = function(userId, cart, shippingAddy, totalCost){
 		console.log(cart);
 		var order = {
 			customer: userId,
 			cart: cart,
-			shippingAddy: shippingAddy
+			shippingAddy: shippingAddy,
+			totalCost: Number(totalCost)
 		}
 		console.log(order);
 		return $http({
@@ -23,7 +24,6 @@ app.service('shoppingService', function($http, $routeParams){
 		})
 	}
 	this.submitStripe = function(token){
-		console.log(token, $routeParams.id)
 		return $http({
 			method: 'POST',
 			url: '/api/orders/' + $routeParams.id + '/payment',

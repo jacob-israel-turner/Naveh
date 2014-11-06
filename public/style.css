@@ -91,6 +91,13 @@ body {
 	margin-bottom: 10px;
 }
 
+/*elements*/
+button:disabled {
+	color: #999;
+}
+/*button{
+	color: #999;
+}*/
 
 /* DASHBOARD */
 .dashboard-pic {

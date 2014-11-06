@@ -8,11 +8,11 @@
 		<div ng-repeat='item in user.cart'>
 		{{item.item.name}} <br>
 		Quantity: {{item.amount}}<br>
-		${{item.price / 100}}<br>
+		${{item.price}}<br>
 		<br>
 		</div>
 
-		Total price: ${{totalPrice / 100}}
+		Total price: ${{totalPrice}}
 		<br>
 		Select an address to ship to:
 		<br>
@@ -22,13 +22,14 @@
 		name='address' 
 		ng-model='$parent.selectedAddress' 
 		ng-value='{{item}}'
-		ng-change='change()'>
+		ng-change='change()'><br>
+		<a href='' ng-click='deleteAddy(item)'>X</a><br>
 		{{item.name}}<br ng-show='item.name'>
 		{{item.address}}<br ng-show='item.address'>
 		{{item.address2}}<br ng-show='item.address2'>
 		{{item.city}}<br ng-show='item.city'>
 		{{item.state}}<br ng-show='item.state'>
-		{{item.zip}}
+		{{item.zip}}<br ng-show='item.zip'>
 		</div>
 		<div ng-show='showNewAddress' class='single-item'>
 			<form>

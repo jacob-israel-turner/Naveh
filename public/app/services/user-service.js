@@ -20,4 +20,10 @@ app.service('userService', function($http){
 			data: addy
 		})
 	}
+	this.deleteAddy = function(addy, userId){
+		return $http({
+			method: 'DELETE',
+			url: '/api/customers/' + userId + '/address/' + addy._id
+		})
+	}
 });

@@ -6,5 +6,11 @@ app.service('orderService', function($http){
 			method: 'GET',
 			url: '/api/orders'
 		})
+	};
+	this.getOrder = function(id){
+		return $http({
+			method: 'GET',
+			url: '/api/orders/' + id
+		})
 	}
 });
