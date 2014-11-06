@@ -13,7 +13,7 @@ var Express = require('express'),
 	stripe = require('stripe')('')
 	bodyParser = require('body-parser');
 
-var port = 9012,
+var port = 80,
 	mongoUri = 'mongodb://localhost:27017/naveh',
 	connection = Mongoose.connection,
 	app = Express();
