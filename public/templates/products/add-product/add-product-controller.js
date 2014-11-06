@@ -19,7 +19,7 @@ app.controller('addProductCtrl', function($scope, ingredientService, productServ
 	}
 
 	$scope.submitProduct = function(){
-		$scope.newProd.price = Number($scope.newProd.price)*100;
+		$scope.newProd.price = Number($scope.newProd.price);
 		$scope.newProd.size = Number($scope.newProd.size);
 		console.log($scope.newProd);
 		productService.newProd($scope.newProd).success(function(data){
