@@ -7,13 +7,13 @@ app.service('productService', function($http, $routeParams){
 	this.getAll = function(){
 		return $http({
 			method: 'GET',
-			url: 'http://localhost:9012/api/products'
+			url: '/api/products'
 		})
 	};
 	this.getOne = function(){
 		return $http({
 			method: 'GET',
-			url: 'http://localhost:9012/api/products/' + $routeParams.name
+			url: '/api/products/' + $routeParams.name
 		})
 	};
 	this.newProd = function(prod){

@@ -7,13 +7,13 @@ app.service('ingredientService', function($http, $routeParams){
 	this.getAll = function(){
 		return $http({
 			method: 'GET',
-			url: 'http://localhost:9012/api/ingredients'
+			url: '/api/ingredients'
 		})
 	};
 	this.getOne = function(){
 		return $http({
 			method: 'GET',
-			url: 'http://localhost:9012/api/ingredients/' + $routeParams.name
+			url: '/api/ingredients/' + $routeParams.name
 		})
 	};
 	this.newIngr = function(ingr){
