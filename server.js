@@ -23,7 +23,7 @@ var port = 80,
 passport.use(new GoogleStrategy({ //This sets up/defines the Google authentication strategy.
 	clientID: '170338434875-eqh886fsse5anq14nj6ck2rnqjncsig3.apps.googleusercontent.com',
 	clientSecret: 'hWFISrL1NZeya4Mc-fQg8WSl',
-	callbackURL: 'http://localhost:9012/auth/google/callback'
+	callbackURL: 'http://jacobisraelturner.com/auth/google/callback'
 }, function(accessToken, refreshToken, params, profile, done){
 	authService.googleAuth(profile).then(function(user){
 		return done(null, user);
