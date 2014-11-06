@@ -14,7 +14,7 @@ var Express = require('express'),
 	bodyParser = require('body-parser');
 
 var port = 80,
-	mongoUri = '/27017/naveh',
+	mongoUri = 'mongodb://107.170.243.101:27017/naveh',
 	connection = Mongoose.connection,
 	app = Express();
 
