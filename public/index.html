@@ -10,24 +10,18 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <link rel="shortcut icon" href="/attachments/favicon.ico" type="image/x-icon">
         <meta charset='UTF-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body ng-app='navehApp' ng-controller='mainCtrl'>
         <div class="top-bar">
             <div class="logo">
                 <a href='/'><img src="/attachments/logo_resized.png"></a>
             </div>
-            <div class="log-in" ng-show='!user'>
-                <p> 
-                    <a href="/register">Log in or Register</a>
-                </p>
+            <div class="login" ng-show='!user'>
+                <a href="/register">Log in</a>
             </div>
-            <div class='logged-in' ng-show='user'>
-                <p>
-                    Welcome, {{user.name}}
-                </p>
-                <p>
-                    <a href='' ng-click='logout()'>Logout</a>
-                </p>
+            <div class='login' ng-show='user'>
+                <a href='' ng-click='logout()'>Logout</a>&nbsp| Welcome,&nbsp<a href='/dashboard'>{{user.name}}</a>
             </div>
             <div class="spacer">
             </div>
@@ -36,9 +30,18 @@
                     <p><i class="fa fa-shopping-cart"></i> Cart: <span ng-show='user.cart.length'>{{user.cart.length}}</span><span ng-show='!user.cart.length'>0</span></p>
                 </a>
             </div>
-            <div class="input-box">
+            <span class='dropdown'>
+                <span class='nav'>Navigation</span>
+                <ul class='nav'>
+                    <li><a href='/products'>Products</a></li>
+                    <li><a href='/ingredients'>Ingredients</a></li>
+                    <li>Organic</li>
+                    <li>Examples</li>
+                </ul>
+            </span>
+<!--        <div class="input-box">
                 <input type="text" placeholder="Search"/>
-            </div>
+            </div> -->
         </div>
 <!--     <a href='/products'>products</a>
     <a href='/products/test'>one product</a> -->

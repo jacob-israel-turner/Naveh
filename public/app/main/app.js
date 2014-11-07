@@ -70,8 +70,6 @@ app.config(function($routeProvider, $locationProvider){
 			controller: 'cartCtrl'
 		})
 		.when('/checkout', {
-			// templateUrl: '/templates/users/checkout/checkout-page.html',
-			// controller: 'checkoutCtrl'
 			redirectTo: '/checkout/select-address'
 		})
 		.when('/checkout/payment/:id', {

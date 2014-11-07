@@ -3,8 +3,10 @@
 		<h1>Welcome to your dashboard, {{user.name}}</h1>
 		<img class='dashboard-pic' ng-src='{{user.googlePic}}'></img>
 		<br>
-		Emails: <span  ng-repeat='email in user.email'>{{email}}, </span>
+		Here are your orders:
 		<br>
-		Cart: 
+		<div class='single-item' ng-repeat='order in user.orders'>
+		Your order of <span ng-repeat='product in order.products'>{{product.quantity}} {{}}
+		</div>
 	</div>
 </div>

@@ -1,6 +1,11 @@
 //NOTES: Using this for validation: https://github.com/leepowellcouk/mongoose-validator
 //Different than mongoose-validate
 
+
+//WHEN PUSHING TO PRODUCTION: change port to 80, mongoUri
+//to jacobisraelturner.com:27017, and callbackURL to
+//jacobisraelturner.com
+
 var Express = require('express'),
 	Mongoose = require('mongoose'),
 	favicon = require('serve-favicon'),
@@ -14,7 +19,7 @@ var Express = require('express'),
 	bodyParser = require('body-parser');
 
 var port = 80,
-	mongoUri = 'mongodb://107.170.243.101:27017/naveh',
+	mongoUri = 'mongodb://jacobisraelturner.com:27017/naveh',
 	connection = Mongoose.connection,
 	app = Express();
 
@@ -37,7 +42,10 @@ passport.serializeUser(function(user, done) {
 	done(null, user._id);
 });
 passport.deserializeUser(function(id, done) {
-	User.findById(id).populate('cart.item').populate('orders.ref').exec(function(err, user){ //I 'think' this checks
+	User.findById(id).populate('cart.item')
+	.populate('orders')
+	.populate('orders.products.ref')
+	.exec(function(err, user){ //I 'think' this checks
 		done(err, user); //the cookie in the req object, then 
 	}) //parses (deserializes) it to tell if they're authenticated
 }); //or not.  Then it sticks the user info in req.user. cool!
