@@ -18,12 +18,12 @@ var Express = require('express'),
 	stripe = require('stripe')('')
 	bodyParser = require('body-parser');
 
-var port = process.env.expressPort || 9012,
-	mongoUri = process.env.expressDB || 'mongodb://localhost:27017/naveh',
+var port = process.env.EXPRESS_PORT || 9012,
+	mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/naveh',
 	connection = Mongoose.connection,
-	googleCb = process.env.expressGoogleCB || 'http://localhost:9012/auth/google/callback',
+	googleCb = process.env.GOOGLE_CB || 'http://localhost:9012/auth/google/callback',
 	app = Express();
-
+console.log(port, mongoUri, googleCb)
 //AUTHENTICATION
 //google oAuth2
 passport.use(new GoogleStrategy({ //This sets up/defines the Google authentication strategy.
