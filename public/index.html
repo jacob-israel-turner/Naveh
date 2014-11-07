@@ -37,6 +37,8 @@
                     <li><a href='/ingredients'>Ingredients</a></li>
                     <li>Organic</li>
                     <li>Examples</li>
+                    <li ng-show='!user'><a href='/register'>Log in</a></li>
+                    <li ng-show='user'><a href='' ng-click='logout()'>Log out</a></li>
                 </ul>
             </span>
 <!--        <div class="input-box">

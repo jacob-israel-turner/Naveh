@@ -166,3 +166,8 @@ button:disabled {
 	height: auto;
 	width: 80px;
 }
+@media (max-width: 515px){
+	.login{
+		display: none;
+	}
+}
