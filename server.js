@@ -19,7 +19,7 @@ var Express = require('express'),
 	bodyParser = require('body-parser');
 
 var port = process.env.EXPRESS_PORT || 9012,
-	mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/naveh',
+	mongoUri = 'mongodb://localhost:27017/naveh',
 	connection = Mongoose.connection,
 	googleCb = process.env.GOOGLE_CB || 'http://localhost:9012/auth/google/callback',
 	app = Express();
