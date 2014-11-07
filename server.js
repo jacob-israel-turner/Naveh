@@ -21,6 +21,7 @@ var Express = require('express'),
 var port = process.env.expressPort || 9012,
 	mongoUri = process.env.expressDB || 'mongodb://localhost:27017/naveh',
 	connection = Mongoose.connection,
+	googleCB = process.env.expressGoogleCB || 'http://localhost:9012/auth/google/callback',
 	app = Express();
 
 //AUTHENTICATION
@@ -28,7 +29,7 @@ var port = process.env.expressPort || 9012,
 passport.use(new GoogleStrategy({ //This sets up/defines the Google authentication strategy.
 	clientID: '170338434875-eqh886fsse5anq14nj6ck2rnqjncsig3.apps.googleusercontent.com',
 	clientSecret: 'hWFISrL1NZeya4Mc-fQg8WSl',
-	callbackURL: process.env.expressGoogleCB || 'http://localhost:9012/auth/google/callback'
+	callbackURL:  googleCb,
 }, function(accessToken, refreshToken, params, profile, done){
 	authService.googleAuth(profile).then(function(user){
 		return done(null, user);
