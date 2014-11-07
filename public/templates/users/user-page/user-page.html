@@ -6,7 +6,7 @@
 		Here are your orders:
 		<br>
 		<div class='single-item' ng-repeat='order in user.orders'>
-		Your order of <span ng-repeat='product in order.products'>{{product.quantity}} {{}}
+		You ordered <a ng-href='/orders/{{order}}'>{{order}}</a>
 		</div>
 	</div>
 </div>

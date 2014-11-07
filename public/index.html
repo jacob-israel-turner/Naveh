@@ -18,10 +18,10 @@
                 <a href='/'><img src="/attachments/logo_resized.png"></a>
             </div>
             <div class="login" ng-show='!user'>
-                <a href="/register">Log in</a>
+                &nbsp<a href="/register">Log in</a>
             </div>
             <div class='login' ng-show='user'>
-                <a href='' ng-click='logout()'>Logout</a>&nbsp| Welcome,&nbsp<a href='/dashboard'>{{user.name}}</a>
+                &nbsp<a href='' ng-click='logout()'>Logout</a>&nbsp| Welcome,&nbsp&nbsp<a href='/dashboard'>{{user.name}}</a>
             </div>
             <div class="spacer">
             </div>
@@ -31,8 +31,11 @@
                 </a>
             </div>
             <span class='dropdown'>
-                <span class='nav'>Navigation</span>
-                <ul class='nav'>
+                <span>
+                <a class='nav'>Navigation</a>
+                </span>
+                <ul>
+                    <li><a href='/'>Home</a></li>
                     <li><a href='/dashboard'>Account</a></li>
                     <li><a href='/products'>Products</a></li>
                     <li><a href='/ingredients'>Ingredients</a></li>

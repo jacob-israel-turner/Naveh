@@ -18,8 +18,8 @@ var Express = require('express'),
 	stripe = require('stripe')('')
 	bodyParser = require('body-parser');
 
-var port = 80,
-	mongoUri = 'mongodb://jacobisraelturner.com:27017/naveh',
+var port = process.env.expressPort || 9012,
+	mongoUri = process.env.expressDB || 'mongodb://localhost:27017/naveh',
 	connection = Mongoose.connection,
 	app = Express();
 
@@ -28,7 +28,7 @@ var port = 80,
 passport.use(new GoogleStrategy({ //This sets up/defines the Google authentication strategy.
 	clientID: '170338434875-eqh886fsse5anq14nj6ck2rnqjncsig3.apps.googleusercontent.com',
 	clientSecret: 'hWFISrL1NZeya4Mc-fQg8WSl',
-	callbackURL: 'http://jacobisraelturner.com/auth/google/callback'
+	callbackURL: 'http://localhost:9012/auth/google/callback'
 }, function(accessToken, refreshToken, params, profile, done){
 	authService.googleAuth(profile).then(function(user){
 		return done(null, user);
@@ -43,8 +43,8 @@ passport.serializeUser(function(user, done) {
 });
 passport.deserializeUser(function(id, done) {
 	User.findById(id).populate('cart.item')
-	.populate('orders')
-	.populate('orders.products.ref')
+	// .populate('orders')
+	// .populate('orders.products.ref')
 	.exec(function(err, user){ //I 'think' this checks
 		done(err, user); //the cookie in the req object, then 
 	}) //parses (deserializes) it to tell if they're authenticated

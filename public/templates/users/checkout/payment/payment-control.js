@@ -3,7 +3,6 @@ var app = angular.module('navehApp');
 app.controller('paymentCtrl', function($scope, $routeParams, $location, shoppingService, orderService){
 	orderService.getOrder($routeParams.id).then(function(data){
 		$scope.order = data.data;
-		console.log(data);
 	});
 	var handler = StripeCheckout.configure({
 	    key: 'pk_test_JQZVLWKQn1Q70xceHd0LLkoK',
