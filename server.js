@@ -21,7 +21,7 @@ var Express = require('express'),
 var port = process.env.expressPort || 9012,
 	mongoUri = process.env.expressDB || 'mongodb://localhost:27017/naveh',
 	connection = Mongoose.connection,
-	googleCB = process.env.expressGoogleCB || 'http://localhost:9012/auth/google/callback',
+	googleCb = process.env.expressGoogleCB || 'http://localhost:9012/auth/google/callback',
 	app = Express();
 
 //AUTHENTICATION
