@@ -96,8 +96,7 @@ app.config(function($routeProvider, $locationProvider){
 	$locationProvider.html5Mode(true);
 });
 
-//toDo: integrate stripe to buy things.
-//----Unify price model.  base 1 or base 100?
+//toDo: Format the Mandrill confirmation emails real quick-like.
 //THEN do some minor front-ending.
 //THEN integrate mandrill to email customers (registration and
 //     purchase) and the company (registration? and purchase).
@@ -106,8 +105,6 @@ app.config(function($routeProvider, $locationProvider){
 //eventually: 
 //---use 'addToSet' when creating a new product (on its ingredients)
 //   or ingredient (on its products)
-//---update price view when viewing individual product.  It's currently
-//   displaying 100* the price.
 //---Account page
 //-----Show their entire account info
 //-----Add emails, addresses, connect Facebook/google, etc.

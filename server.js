@@ -15,7 +15,6 @@ var Express = require('express'),
 	expressSession = require('express-session'),
 	User = require('./lib/models/customer'),
 	GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
-	stripe = require('stripe')('')
 	bodyParser = require('body-parser');
 
 var port = process.env.EXPRESS_PORT || 9012,
@@ -23,7 +22,7 @@ var port = process.env.EXPRESS_PORT || 9012,
 	connection = Mongoose.connection,
 	googleCb = process.env.GOOGLE_CB || 'http://localhost:9012/auth/google/callback',
 	app = Express();
-console.log(port, mongoUri, googleCb)
+
 //AUTHENTICATION
 //google oAuth2
 passport.use(new GoogleStrategy({ //This sets up/defines the Google authentication strategy.
@@ -66,7 +65,8 @@ var customerController = require('./lib/controllers/customerController'),
 	ingredientController = require('./lib/controllers/ingredient-controller'),
 	orderController = require('./lib/controllers/order-controller'),
 	paymentController = require('./lib/controllers/payment-controller'),
-	cartController = require('./lib/controllers/cart-controller');
+	cartController = require('./lib/controllers/cart-controller'),
+	messageController = require('./lib/controllers/message-controller');
 
 //services:
 var authService = require('./lib/services/auth-service.js');
@@ -117,20 +117,6 @@ app.get('/api/user/me', function(req, res) {
   	return res.json(req.user); 
 });										//gets a user's data
 
-//customers
-app.get('/api/customers', customerController.get);
-
-app.post('/api/customers', customerController.post);
-
-app.get('/api/customers/:id', customerController.getOne);
-
-app.put('/api/customers/:id', customerController.put);
-
-app.delete('/api/customers/:id', customerController.delete);
-//address
-app.put('/api/customers/:id/address', customerController.addAddress);
-
-app.delete('/api/customers/:id/address/:addyId', customerController.deleteAddress);
 
 //products
 app.get('/api/products', productController.get);
@@ -154,6 +140,22 @@ app.put('/api/ingredients/:name', ingredientController.put);
 
 app.delete('/api/ingredients/:id', ingredientController.delete);
 
+
+//CUSTOMERS
+app.get('/api/customers', customerController.get);
+
+app.post('/api/customers', customerController.post);
+
+app.get('/api/customers/:id', customerController.getOne);
+
+app.put('/api/customers/:id', customerController.put);
+
+app.delete('/api/customers/:id', customerController.delete);
+//address
+app.put('/api/customers/:id/address', customerController.addAddress);
+
+app.delete('/api/customers/:id/address/:addyId', customerController.deleteAddress);
+
 //orders
 app.post('/api/orders', orderController.post);
 
@@ -173,6 +175,9 @@ app.get('/api/customers/:id/cart', cartController.get);
 app.put('/api/customers/:id/cart', cartController.put);
 
 app.delete('/api/customers/:id/cart', cartController.delete);
+
+//MESSAGES
+app.post('/api/messages/send', messageController.sendMessage);
 
 //miscellaneous
 //This serves the index file, which makes angular's HTML5 mode work properly
