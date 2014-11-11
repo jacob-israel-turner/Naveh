@@ -2,33 +2,33 @@ var app = angular.module('navehApp', ['ngRoute']);
 
 app.config(function($routeProvider, $locationProvider){
 	$routeProvider
-		.when('/', {
-			templateUrl: '/templates/home/home.html',
-			controller: 'homeCtrl'
-		})
+	.when('/', {
+		templateUrl: '/templates/home/home.html',
+		controller: 'homeCtrl'
+	})
 
 
-		.when('/register', {
-			templateUrl: '/templates/register/register.html',
-			controller: 'registerCtrl'
-		})
-		.when('/register/error', {
-			templateUrl: '/templates/register/error.html'
-		})
-		.when('/auth/google',{
-			templateUrl: '/templates/register/google-auth.html',
-			resolve: {
-				reroute: function(){
-					location.reload();
-				}
+	.when('/register', {
+		templateUrl: '/templates/register/register.html',
+		controller: 'registerCtrl'
+	})
+	.when('/register/error', {
+		templateUrl: '/templates/register/error.html'
+	})
+	.when('/auth/google',{
+		templateUrl: '/templates/register/google-auth.html',
+		resolve: {
+			reroute: function(){
+				location.reload();
 			}
-		})
+		}
+	})
 
 
-		.when('/products', {
-			templateUrl: '/templates/products/products.html',
-			controller: 'productsCtrl'
-		})
+	.when('/products', {
+		templateUrl: '/templates/products/products.html',
+		controller: 'productsCtrl'
+	})
 		.when('/products/add', { //needs admin auth
 			templateUrl: '/templates/products/add-product/add-product.html',
 			controller: 'addProductCtrl'
@@ -93,8 +93,8 @@ app.config(function($routeProvider, $locationProvider){
 		.otherwise({
 			redirectTo: '/'
 		})
-	$locationProvider.html5Mode(true);
-});
+		$locationProvider.html5Mode(true);
+	});
 
 //toDo: Format the Mandrill confirmation emails real quick-like.
 //THEN do some minor front-ending.

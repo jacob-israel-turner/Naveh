@@ -1,8 +1,10 @@
 <div class='flex-box'>
-	<div class='floating-container'>
+	<div class='floating-container products'>
 		<h1>Products!</h1>
 		<div class='single-item' ng-repeat='product in products.data'>
-			<h3><a ng-href='/products/{{product.name}}'>{{product.name}}</a></h3>
+			<a ng-href='/products/{{product.name}}'><img ng-src='{{product.image}}'></img></a><br>
+			<a ng-href='/products/{{product.name}}'>{{product.name}}</a><br>
+			${{product.price}}
 			<!-- <span>Ingredients: <span ng-repeat='ingredient in product.ingredients'>{{ingredient.name}}, </span></span>
 			<p>{{product.info}}</p>
 			${{product.price}}

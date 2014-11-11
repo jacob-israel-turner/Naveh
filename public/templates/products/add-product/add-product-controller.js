@@ -13,6 +13,7 @@ app.controller('addProductCtrl', function($scope, ingredientService, productServ
 			info: '',
 			price: '',
 			size: '',
+			image: '',
 			ingredients: [],
 			active: true
 		};
