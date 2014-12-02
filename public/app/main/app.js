@@ -29,72 +29,72 @@ app.config(function($routeProvider, $locationProvider){
 		templateUrl: '/templates/products/products.html',
 		controller: 'productsCtrl'
 	})
-		.when('/products/add', { //needs admin auth
-			templateUrl: '/templates/products/add-product/add-product.html',
-			controller: 'addProductCtrl'
-		})
-		.when('/products/edit/:name', { //needs admin auth
-			templateUrl: '/templates/products/edit-product/edit-product.html',
-			controller: 'editProductCtrl'
-		})
-		.when('/products/:name', {
-			templateUrl: '/templates/products/product-page/product-page.html',
-			controller: 'productCtrl'
-		})
+	.when('/products/add', { //needs admin auth
+		templateUrl: '/templates/products/add-product/add-product.html',
+		controller: 'addProductCtrl'
+	})
+	.when('/products/edit/:name', { //needs admin auth
+		templateUrl: '/templates/products/edit-product/edit-product.html',
+		controller: 'editProductCtrl'
+	})
+	.when('/products/:name', {
+		templateUrl: '/templates/products/product-page/product-page.html',
+		controller: 'productCtrl'
+	})
 
 
-		.when('/ingredients', {
-			templateUrl: '/templates/ingredients/ingredients.html',
-			controller: 'ingredientsCtrl'
-		})
-		.when('/ingredients/add', { //needs admin auth
-			templateUrl: '/templates/ingredients/add-ingredient/add-ingredient.html',
-			controller:'addIngredientCtrl'
-		})
-		.when('/ingredients/edit/:name', { //needs admin auth
-			templateUrl: '/templates/ingredients/edit-ingredient/edit-ingredient.html',
-			controller: 'editIngredientCtrl'
-		})
-		.when('/ingredients/:name', {
-			templateUrl: '/templates/ingredients/ingredient-page/ingredient-page.html',
-			controller: 'ingredientCtrl'
-		})
+	.when('/ingredients', {
+		templateUrl: '/templates/ingredients/ingredients.html',
+		controller: 'ingredientsCtrl'
+	})
+	.when('/ingredients/add', { //needs admin auth
+		templateUrl: '/templates/ingredients/add-ingredient/add-ingredient.html',
+		controller:'addIngredientCtrl'
+	})
+	.when('/ingredients/edit/:name', { //needs admin auth
+		templateUrl: '/templates/ingredients/edit-ingredient/edit-ingredient.html',
+		controller: 'editIngredientCtrl'
+	})
+	.when('/ingredients/:name', {
+		templateUrl: '/templates/ingredients/ingredient-page/ingredient-page.html',
+		controller: 'ingredientCtrl'
+	})
 
-		
-		.when('/dashboard', {
-			templateUrl: '/templates/users/user-page/user-page.html',
-			controller: 'userCtrl'
-		})
-		.when('/cart', {
-			templateUrl: '/templates/users/cart/cart-page.html',
-			controller: 'cartCtrl'
-		})
-		.when('/checkout', {
-			redirectTo: '/checkout/select-address'
-		})
-		.when('/checkout/payment/:id', {
-			templateUrl: '/templates/users/checkout/payment/payment-page.html',
-			controller: 'paymentCtrl'
-		})
-		.when('/checkout/select-address', {
-			templateUrl: '/templates/users/checkout/select-address/select-address.html',
-			controller: 'selectAddressCtrl'
-		})
+	
+	.when('/dashboard', {
+		templateUrl: '/templates/users/user-page/user-page.html',
+		controller: 'userCtrl'
+	})
+	.when('/cart', {
+		templateUrl: '/templates/users/cart/cart-page.html',
+		controller: 'cartCtrl'
+	})
+	.when('/checkout', {
+		redirectTo: '/checkout/select-address'
+	})
+	.when('/checkout/payment/:id', {
+		templateUrl: '/templates/users/checkout/payment/payment-page.html',
+		controller: 'paymentCtrl'
+	})
+	.when('/checkout/select-address', {
+		templateUrl: '/templates/users/checkout/select-address/select-address.html',
+		controller: 'selectAddressCtrl'
+	})
 
-		.when('/orders', {
-			templateUrl: '/templates/users/orders/orders-page.html',
-			controller: 'ordersCtrl'
-		})
-		.when('/orders/:id', {
-			templateUrl: '/templates/users/orders/order-page/order-page.html',
-			controller: 'orderCtrl'
-		})
-		
-		.otherwise({
-			redirectTo: '/'
-		})
-		$locationProvider.html5Mode(true);
-	});
+	.when('/orders', {
+		templateUrl: '/templates/users/orders/orders-page.html',
+		controller: 'ordersCtrl'
+	})
+	.when('/orders/:id', {
+		templateUrl: '/templates/users/orders/order-page/order-page.html',
+		controller: 'orderCtrl'
+	})
+	
+	.otherwise({
+		redirectTo: '/'
+	})
+	$locationProvider.html5Mode(true);
+});
 
 //toDo: Format the Mandrill confirmation emails real quick-like.
 //THEN do some minor front-ending.
